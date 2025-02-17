@@ -1,0 +1,19 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.cards-holder {
+    margin-top: 80px;
+}
+
+@media(max-width: 992px) {
+    .card {
+        width: 100% !important;
+    }
+
+    .cards-holder {
+        width: 80% !important;
+    }
+}
