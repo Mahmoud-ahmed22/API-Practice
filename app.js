@@ -1,28 +1,42 @@
-var arr = [];
-var title = document.getElementById("title");
-var body = document.getElementById("body");
-var container = document.getElementById("container");
-
-var http = new XMLHttpRequest();
-
-var url = 'https://jsonplaceholder.typicode.com/posts';
-
-http.open('GET', url);
-
-http.send();
-
-http.addEventListener('readystatechange', function() {
-    if (http.readyState == 4) {
-        arr = JSON.parse(http.response);
-        display(arr);
-    }
-})
+let arr = [];
+let title = document.getElementById("title");
+let body = document.getElementById("body");
+let container = document.getElementById("container");
 
 
+//                 With Promise
+
+
+// let http = new XMLHttpRequest();
+
+// var url = 'https://jsonplaceholder.typicode.com/posts';
+// http.open('GET', url);
+// http.send();
+
+// const API_Data = new Promise((resolved, rejected) => {
+
+//     http.addEventListener('readystatechange', function() {
+//         if (http.readyState == 4) {
+//             if (http.status === 200) {
+//                 resolved(http.response)
+//             } else {
+//                 rejected("Failed");
+//             }
+//         }
+//     })
+// })
+
+// API_Data.then((data) => display(JSON.parse(data))).catch((error) => console.log(error));
+
+//                 With Fetch
+
+const url = "https://jsonplaceholder.typicode.com/posts";
+
+fetch(url).then((data) => data.json()).then(data => display(data)).catch(error => console.log(error));
 
 function display(arr) {
-    var text;
-    var arrLength = arr.length;
+    let text;
+    let arrLength = arr.length;
     for (let i = 0; i < arrLength; i++) {
         text = `<div class="card w-75 mb-3">
                     <div class="card-body">
@@ -36,3 +50,19 @@ function display(arr) {
     }
 }
 
+// Post
+
+let data = {
+    fName: "Mahmoud",
+    lName: "Ahmed",
+    id: "143",
+}
+
+const urlPost = ("https://jsonplaceholder.typicode.com/posts");
+
+let options = {
+    method: "Post",
+    body: JSON.stringify(data),
+}
+
+fetch(url, options).then((result) => result.json()).then(result => console.log(result));
